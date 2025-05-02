@@ -14,6 +14,6 @@ function RootLayout(props: RootLayoutProps) {
       <body className="">{props.children}</body>
     </html>
   );
-};
+}
 
 export default RootLayout;

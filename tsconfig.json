@@ -2,7 +2,7 @@
   "compilerOptions": {
     /* プロジェクト */
     "incremental": true, // 差分型チェック（`.tsbuildinfo` を使ってビルドを高速化）
-    "tsBuildInfoFile": "./.tsbuildinfo", /* .tsbuildinfo 増分コンパイルファイルのパスを指定します。 */
+    "tsBuildInfoFile": "./.tsbuildinfo" /* .tsbuildinfo 増分コンパイルファイルのパスを指定します。 */,
 
     /* 言語と環境 */
     "target": "ES2022", // トランスパイル先の構文レベル（最新構文を許可）
@@ -41,7 +41,7 @@
     "skipLibCheck": true, // node_modules 内の型定義ファイルの型チェックをスキップ（高速化）
 
     /* プラグイン */
-    "plugins": [{ "name": "next" }], // Next.js の構文チェックを強化するプラグイン
+    "plugins": [{ "name": "next" }] // Next.js の構文チェックを強化するプラグイン
   },
 
   /* 型チェックの対象ファイル */

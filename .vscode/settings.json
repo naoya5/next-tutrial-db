@@ -37,9 +37,5 @@
   "search.exclude": {
     "**/node_modules": true
   },
-  "todo-tree.general.tags": [
-    "todo",
-    "TODO",
-    "Todo",
-  ]
+  "todo-tree.general.tags": ["todo", "TODO", "Todo"]
 }
