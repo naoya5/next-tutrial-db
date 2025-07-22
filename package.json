@@ -17,6 +17,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@prisma/client": "6.5.0",
     "@t3-oss/env-nextjs": "^0.13.4",
     "next": "15.3.1",
     "react": "^19.0.0",
@@ -45,6 +46,7 @@
     "postcss-load-config": "^6.0.1",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
+    "prisma": "6.5.0",
     "tailwindcss": "^4",
     "typescript": "^5",
     "typescript-eslint": "^8.31.1"
