@@ -3,25 +3,25 @@ import { z } from "zod";
 
 export const env = createEnv({
   client: {
-    // NEXT_PUBLIC_CLIENTVAR: z.string(),
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string(),
+    NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
   },
   emptyStringAsUndefined: true,
   runtimeEnv: {
-    DEBUG_MESSAGE: process.env.DEBUG_MESSAGE,
-    NODE_ENV: process.env.NODE_ENV,
-    // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
+    DATABASE_URL: process.env.DATABASE_URL,
+    DIRECT_URL: process.env.DIRECT_URL,
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
   },
   server: {
     /**
-     * テスト用のメッセージ
+     * Prisma Client がデータベースへ接続するためのデータベース接続先
      */
-    DEBUG_MESSAGE: z.string(),
+    DATABASE_URL: z.string().url(),
     /**
-     * 環境
+     * Prisma CLI がデータベースの操作をするためのデータベース接続先
      */
-    NODE_ENV: z
-      .enum(["development", "test", "production"])
-      .default("development"),
+    DIRECT_URL: z.string().url(),
   },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
 });
