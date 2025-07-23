@@ -1,6 +1,8 @@
 import { getUsers } from "@/server/dal/user";
 import UserSection from "./_components/user-section";
 
+export const dynamic = "force-dynamic";
+
 async function Page() {
   const users = await getUsers({ id: "asc" });
 
