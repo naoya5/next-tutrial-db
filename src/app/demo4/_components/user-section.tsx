@@ -2,6 +2,7 @@
 import { useState, useTransition } from "react";
 import { createUser, deleteUser } from "@/app/actions/user-actions";
 import type { User } from "@prisma/client";
+import UserSchema from "@/schemas/user.schema";
 
 interface UserSectionProps {
   users: User[];
@@ -31,6 +32,16 @@ export default function UserSection(props: UserSectionProps) {
   function handleAddUser(e: React.FormEvent) {
     e.preventDefault();
     setError("");
+    const parseResult = UserSchema.omit({ id: true }).safeParse(form);
+    if (!parseResult.success) {
+      const flat = parseResult.error.flatten();
+      const firstMsg =
+        flat.formErrors[0] ??
+        Object.values(flat.fieldErrors)[0]?.[0] ??
+        "入力内容に誤りがあります";
+      setError(firstMsg);
+      return;
+    }
     startTransition(async () => {
       const res = await createUser(form);
       if (res.success) {
