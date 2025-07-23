@@ -41,3 +41,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 dist
+
+# Ignore Prisma generated files
+src/server/db/prisma/generated/zod

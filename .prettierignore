@@ -1,0 +1,2 @@
+# Ignore Prisma generated files
+src/server/db/prisma/generated/zod
