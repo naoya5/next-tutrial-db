@@ -49,6 +49,16 @@ export async function deleteManyUsers(where: { email?: string; role?: Role }) {
   };
 }
 
+//単一ユーザ削除
+export async function deleteUser(id: number) {
+  const user = await prisma.user.delete({
+    where: {
+      id,
+    },
+  });
+  return createUserDTO(user);
+}
+
 export async function getUsers(orderBy: { id?: "asc" | "desc" }) {
   const users = await prisma.user.findMany({
     orderBy,
