@@ -1,4 +1,5 @@
 import { getUsers } from "@/server/dal/user";
+import UserSection from "./_components/user-section";
 
 async function Page() {
   const users = await getUsers({ id: "asc" });
@@ -9,30 +10,7 @@ async function Page() {
         <h1 className="text-3xl font-extrabold text-purple-700 mb-6 tracking-tight drop-shadow">
           ユーザーリスト
         </h1>
-        <div className="w-full bg-white rounded-xl shadow">
-          {users.map((user) => (
-            <div
-              className="flex items-center px-4 py-3 gap-4 hover:bg-gray-50 transition"
-              key={user.id}
-            >
-              <div className="flex-1 min-w-0">
-                <p className="font-semibold text-gray-800 truncate">
-                  {user.name}
-                </p>
-                <p className="text-sm text-blue-600 truncate">{user.email}</p>
-              </div>
-              <span
-                className={`px-3 py-1 text-xs font-medium rounded-full border ${
-                  user.role === "ADMIN"
-                    ? "bg-purple-100 text-purple-700 border-purple-200"
-                    : "bg-blue-100 text-blue-700 border-blue-200"
-                }`}
-              >
-                {user.role}
-              </span>
-            </div>
-          ))}
-        </div>
+        <UserSection users={users} />
       </div>
     </main>
   );
