@@ -10,7 +10,7 @@ export interface ApiResponse {
 export interface CreateUserData {
   email: string;
   name?: string;
-  password: string;
+  password?: string;
   role?: "ADMIN" | "USER";
 }
 
