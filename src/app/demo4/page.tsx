@@ -1,6 +1,9 @@
 import { getUsers } from "@/server/dal/user";
 import UserSection from "./_components/user-section";
 
+//キャッシュを無効化
+export const dynamic = "force-dynamic";
+
 async function Page() {
   const users = await getUsers({ id: "asc" });
 
