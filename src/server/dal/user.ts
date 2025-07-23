@@ -1,6 +1,7 @@
 import type { Role, User } from "@prisma/client";
 import { prisma } from "@/server/db/prisma";
 import "server-only";
+import UserSchema from "@/schemas/user.schema";
 
 export async function createUser(data: {
   email: string;
@@ -8,6 +9,12 @@ export async function createUser(data: {
   password: string;
   role?: Role;
 }) {
+  const parseResult = UserSchema.omit({ id: true }).safeParse(data);
+
+  if (!parseResult.success) {
+    throw new Error("Invalid user data");
+  }
+
   const user = await prisma.user.create({
     data,
   });
@@ -23,6 +30,14 @@ export async function createUsers(
     role?: Role;
   }>,
 ) {
+  //validate input data
+  for (const data of dataArray) {
+    const parseResult = UserSchema.omit({ id: true }).safeParse(data);
+    if (!parseResult.success) {
+      throw new Error("Invalid user data");
+    }
+  }
+
   const results = await prisma.user.createMany({
     data: dataArray,
   });

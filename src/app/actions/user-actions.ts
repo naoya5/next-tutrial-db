@@ -1,5 +1,6 @@
 "use server";
 
+import UserSchema from "@/schemas/user.schema";
 import {
   createUser as dalCreateUser,
   createUsers as dalCreateUsers,
@@ -20,6 +21,14 @@ export interface CreateUserData {
 //create users
 export async function createManyUsers(userData: CreateUserData[]) {
   try {
+    //validate input data
+    for (const user of userData) {
+      const parseResult = UserSchema.omit({ id: true }).safeParse(user);
+      if (!parseResult.success) {
+        throw new Error("Invalid user data");
+      }
+    }
+
     const result = await dalCreateUsers(
       userData.map((user) => ({
         email: user.email,
@@ -45,6 +54,12 @@ export async function createManyUsers(userData: CreateUserData[]) {
 // ユーザー作成
 export async function createUser(userData: CreateUserData) {
   try {
+    //validate input data
+    const parseResult = UserSchema.omit({ id: true }).safeParse(userData);
+    if (!parseResult.success) {
+      throw new Error("Invalid user data");
+    }
+
     const user = await dalCreateUser({
       email: userData.email,
       name: userData.name,

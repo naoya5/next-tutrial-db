@@ -39,7 +39,9 @@ export default function UserSection(props: UserSectionProps) {
           setUsers((prev) => [...prev, res.user]);
         }
       } else {
-        setError(res.error ?? "登録に失敗しました");
+        setError(
+          typeof res.error === "string" ? res.error : "登録に失敗しました",
+        );
       }
     });
   }
