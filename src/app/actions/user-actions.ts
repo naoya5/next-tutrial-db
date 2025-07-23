@@ -4,6 +4,7 @@ import {
   createUser as dalCreateUser,
   createUsers as dalCreateUsers,
   deleteAllUsers as dalDeleteAllUsers,
+  deleteUser as dalDeleteUser,
   getUsers as dalGetUsers,
 } from "@/server/dal/user";
 import { Role } from "@prisma/client";
@@ -65,6 +66,17 @@ export async function deleteAllUsers() {
   } catch (error) {
     console.error("ユーザー削除エラー:", error);
     return { error: "全ユーザーの削除に失敗しました", success: false };
+  }
+}
+
+// ユーザー削除
+export async function deleteUser(id: number) {
+  try {
+    const user = await dalDeleteUser(id);
+    return { success: true, user };
+  } catch (error) {
+    console.error("ユーザー削除エラー:", error);
+    return { error: "ユーザーの削除に失敗しました", success: false };
   }
 }
 
